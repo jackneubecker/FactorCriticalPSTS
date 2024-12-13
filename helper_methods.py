@@ -42,7 +42,8 @@ def is_PSTS_checker(triples, point_set):
     """Takes a list of triples and a set of points point_set and 
     checks that the triples are subsets of the point_set, and determines if
     the set of triples is a PSTS, or if a pair of points 
-    is contained in more than one triple. """
+    is contained in more than one triple. Elements of triples must be 
+    comparable. """
     valid_elements = True
     for T in triples: 
         for x in T: 
@@ -55,33 +56,25 @@ def is_PSTS_checker(triples, point_set):
         for T in triples: 
             for i in range(len(T)): 
                 for j in range(i+1,len(T)): 
-                    if [T[i],T[j]] in pairs: 
-                        print("{0} contains a pair of points which already occurs in another triple. ".format(T))
+                    pair = sorted([T[i],T[j]])
+                    if pair in pairs: 
+                        print("{0} contains a pair of points {1} which already occurs in another triple. ".format(T,pair))
                         is_PSTS = False
                     else: 
-                        pairs.append([T[i],T[j]])
-                        pairs.append([T[j],T[i]])
+                        pairs.append(pair)
         if is_PSTS: 
             print("This is a PSTS. ")
 
-    # pairs = []
-    # n = len(point_set)
-    # for i in range(n): 
-    #     for j in range(i+1,n): 
-    #         pairs.append([point_set[i],point_set[j]])
-
-    # is_PSTS = True
-    # for T in triples: 
-    #     try: 
-    #         pairs.remove([T[0],T[1]])
-    #         pairs.remove([T[0],T[2]])
-    #         pairs.remove([T[1],T[2]])
-    #     except ValueError: 
-    #         print("This pair of points appears in another triple.")
-    #         is_PSTS = False
-    
-    # if is_PSTS: 
-    #     if pairs == []: 
-    #         print("This is an STS. ")
-    #     else: 
-    #         print("This is a PSTS.")
+def has_APCs_checker(triples, APCs): 
+    """Takes a list of sorted triples and a list of APCs and checks that each 
+    triple in each APC is a triple in the list of triples. Elements of triples 
+    must be comparable. """
+    valid_APCs = True
+    for APC in APCs: 
+        for T in APC: 
+            T = sorted(T)
+            if T not in triples: 
+                print("{0} is not a triple in the PSTS. ".format(T))
+                valid_APCs = False
+    if valid_APCs == True: 
+        print("All APCs are in the PSTS. ")
