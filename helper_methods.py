@@ -189,14 +189,49 @@ def three_rotational_extra_triple_constructor(m,extra_starter_triples):
     extra_starter_triples should be of the form ['x_i', 'y_j', 'z_k'], 
     with x,y,z elements of {a,b,c}, and i,j,k integers 
     from 1 to m inclusive. """
+    # TODO: figure out infinity blocks and short order blocks
     extra_triples = []
     for T in extra_starter_triples: 
-        x = T[0].split('_')[0]
-        y = T[1].split('_')[0]
-        z = T[2].split('_')[0]
-        i = T[0].split('_')[1]
-        j = T[1].split('_')[1]
-        k = T[2].split('_')[1]
-        for ell in range(m): 
-            extra_triples.append(['{0}_{1}'.format(x,(i+ell)%m + 1), '{0}_{1}'.format(y,(j+ell)%m + 1), '{0}_{1}'.format(z,(k+ell)%m + 1)])
-    return extra_triples
+        if T[0] == 'infty': 
+            y = T[1].split('_')[0]
+            j = int(T[1].split('_')[1])
+            z = T[2].split('_')[0]
+            k = int(T[2].split('_')[1])
+            for ell in range(m): 
+                extra_triples.append(sorted(['infty', 
+                                             '{0}_{1}'.format(y,(j+ell)%m + 1), 
+                                             '{0}_{1}'.format(z,(k+ell)%m + 1)]))
+        elif T[1] == 'infty': 
+            x = T[0].split('_')[0]
+            i = int(T[0].split('_')[1])
+            z = T[2].split('_')[0]
+            k = int(T[2].split('_')[1])
+            for ell in range(m): 
+                extra_triples.append(sorted(['{0}_{1}'.format(x,(i+ell)%m + 1), 
+                                             'infty', 
+                                             '{0}_{1}'.format(z,(k+ell)%m + 1)]))
+        elif T[2] == 'infty': 
+            x = T[0].split('_')[0]
+            i = int(T[0].split('_')[1])
+            y = T[1].split('_')[0]
+            j = int(T[1].split('_')[1])
+            for ell in range(m): 
+                extra_triples.append(sorted(['{0}_{1}'.format(x,(i+ell)%m + 1), 
+                                             '{0}_{1}'.format(y,(j+ell)%m + 1), 
+                                             'infty']))
+        else: 
+            x = T[0].split('_')[0]
+            i = int(T[0].split('_')[1])
+            y = T[1].split('_')[0]
+            j = int(T[1].split('_')[1])
+            z = T[2].split('_')[0]
+            k = int(T[2].split('_')[1])
+            for ell in range(m): 
+                extra_triples.append(sorted(['{0}_{1}'.format(x,(i+ell)%m + 1), 
+                                      '{0}_{1}'.format(y,(j+ell)%m + 1), 
+                                      '{0}_{1}'.format(z,(k+ell)%m + 1)]))
+    duplicate_free_extra_triples = []
+    for T in extra_triples: 
+        if T not in duplicate_free_extra_triples: 
+            duplicate_free_extra_triples.append(T)
+    return duplicate_free_extra_triples
