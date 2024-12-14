@@ -19,3 +19,8 @@ has_APCs_checker(triples, APCs)
 extra_triples = txt_to_list_of_triples('22/PSTS_22_63_73/data/extra_triples.txt',str_to_int=True)
 
 extra_triples_checker(triples, extra_triples, point_set)
+
+for T in triples+extra_triples: 
+    if 0 in T: 
+        if 1 in T or 2 in T or 3 in T: 
+            print("{0} has a bad pair. ")
