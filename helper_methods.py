@@ -60,16 +60,16 @@ def is_PSTS_checker(triples, point_set):
                 valid_elements = False
     if valid_elements == True: 
         is_PSTS = True
-        pairs = []
+        pairs = {}
         for T in triples: 
             for i in range(len(T)): 
                 for j in range(i+1,len(T)): 
-                    pair = sorted([T[i],T[j]])
-                    if pair in pairs: 
-                        print("{0} contains a pair of points {1} which already occurs in another triple. ".format(T,pair))
+                    pair = tuple(sorted([T[i],T[j]]))
+                    if pair in list(pairs.keys()): 
+                        print("{0} contains a pair of points {1} which already occurs in another triple {2}. ".format(T,pair, pairs[pair]))
                         is_PSTS = False
                     else: 
-                        pairs.append(pair)
+                        pairs[pair] = T
         if is_PSTS: 
             print("This is a PSTS({0}) with {1} triples. ".format(len(point_set), len(triples)))
 
