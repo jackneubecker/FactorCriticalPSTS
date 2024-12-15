@@ -1,8 +1,4 @@
 from helper_methods import * 
-import importlib
-import sys 
-
-importlib.reload(sys.modules['helper_methods'])
 
 n = 25
 point_set = list(range(n))

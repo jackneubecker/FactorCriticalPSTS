@@ -56,8 +56,8 @@ def is_PSTS_checker(triples, point_set):
     for T in triples: 
         for x in T: 
             if x not in point_set: 
-                print("{0} contains an element {1} which is not a point. ".format(T,x))
                 valid_elements = False
+                raise ValueError("{0} contains an element {1} which is not a point. ".format(T,x))
     if valid_elements == True: 
         is_PSTS = True
         pairs = {}
@@ -66,8 +66,8 @@ def is_PSTS_checker(triples, point_set):
                 for j in range(i+1,len(T)): 
                     pair = tuple(sorted([T[i],T[j]]))
                     if pair in list(pairs.keys()): 
-                        print("{0} contains a pair of points {1} which already occurs in another triple {2}. ".format(T,pair, pairs[pair]))
                         is_PSTS = False
+                        raise ValueError("{0} contains a pair of points {1} which already occurs in another triple {2}. ".format(T,pair, pairs[pair]))
                     else: 
                         pairs[pair] = T
         if is_PSTS: 
@@ -93,7 +93,7 @@ def is_APCs_checker(APCs, point_set):
                         point_set_copy.remove(x)
         if point_set_copy != []: 
             valid_APCs = False
-            print("{0} are not included in {1}. ".format(point_set_copy, APC))
+            raise ValueError("{0} are not included in {1}. ".format(point_set_copy, APC))
     if valid_APCs: 
         print("Each of the {0} given APCs is a disjoint set of triples containing every point except the missed point exactly once. ".format(len(APCs)))
 
@@ -110,8 +110,8 @@ def has_APCs_checker(triples, APCs):
         for T in APC: 
             T = sorted(T)
             if T not in sorted_triples: 
-                print("{0} is in the APC missing {1} but is not a triple in the PSTS. ".format(T, missed_pt))
                 valid_APCs = False
+                raise ValueError("{0} is in the APC missing {1} but is not a triple in the PSTS. ".format(T, missed_pt))
     if valid_APCs == True: 
         print("Each of the triples in the {0} given APCs are in the PSTS. ".format(len(APCs)))
 
@@ -124,8 +124,8 @@ def extra_triples_checker(triples, extra_triples, point_set):
     for T in extra_triples: 
         for x in T: 
             if x not in point_set: 
-                print("{0} contains an element {1} which is not a point. ".format(T,x))
                 valid_elements = False
+                raise ValueError("{0} contains an element {1} which is not a point. ".format(T,x))
     if valid_elements == True: 
         is_PSTS = True
         pairs = []
@@ -138,8 +138,8 @@ def extra_triples_checker(triples, extra_triples, point_set):
                 for j in range(i+1,len(T)): 
                     pair = sorted([T[i],T[j]])
                     if pair in pairs: 
-                        print("{0} contains a pair of points {1} which already occurs in another triple. ".format(T,pair))
                         is_PSTS = False
+                        raise ValueError("{0} contains a pair of points {1} which already occurs in another triple. ".format(T,pair))
                     else: 
                         pairs.append(pair)
         if is_PSTS: 
