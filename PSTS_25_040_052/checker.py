@@ -13,7 +13,7 @@ def checker():
 
     extra_starter_triples = txt_to_list_of_triples('PSTS_25_040_052/data/extra_starter_triples.txt')
     extra_triples = three_rotational_extra_triple_constructor(m,extra_starter_triples)
-    is_PSTS_checker(triples + extra_triples, point_set)
+    extra_triples_checker(triples, extra_triples, point_set)
 
 if __name__ == '__main__': 
     checker()
