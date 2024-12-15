@@ -5,7 +5,7 @@ def checker():
 
     point_set = list(range(n))
 
-    starter_triples = txt_to_list_of_triples('46/PSTS_46_292_337/data/starter_triples.txt', str_to_int=True)
+    starter_triples = txt_to_list_of_triples('PSTS_46_292_337/data/starter_triples.txt', str_to_int=True)
 
     A1_triples = []
     for i in range(n-1): 
@@ -19,12 +19,12 @@ def checker():
 
     is_PSTS_checker(triples,point_set)
 
-    APCs = txt_to_dict_of_APCs('46/PSTS_46_292_337/data/APCs.txt', str_to_int=True)
+    APCs = txt_to_dict_of_APCs('PSTS_46_292_337/data/APCs.txt', str_to_int=True)
 
     is_APCs_checker(APCs, point_set)
     has_APCs_checker(triples, APCs)
 
-    extra_starter_triples = txt_to_list_of_triples('46/PSTS_46_292_337/data/extra_starter_triples.txt', str_to_int=True)
+    extra_starter_triples = txt_to_list_of_triples('PSTS_46_292_337/data/extra_starter_triples.txt', str_to_int=True)
 
     extra_triples = [] 
     for i in range(n-1): 

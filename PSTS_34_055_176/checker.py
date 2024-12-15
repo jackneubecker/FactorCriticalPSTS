@@ -11,7 +11,7 @@ def checker():
     is_APCs_checker(APCs, point_set)
     has_APCs_checker(triples, APCs)
 
-    extra_starter_triples = txt_to_list_of_triples('34/PSTS_34_55_176/data/extra_starter_triples.txt')
+    extra_starter_triples = txt_to_list_of_triples('PSTS_34_055_176/data/extra_starter_triples.txt')
     extra_triples = three_rotational_extra_triple_constructor(m,extra_starter_triples)
     extra_triples_checker(triples, extra_triples, point_set)
 
