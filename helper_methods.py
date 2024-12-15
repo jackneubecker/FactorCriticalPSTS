@@ -95,7 +95,7 @@ def is_APCs_checker(APCs, point_set):
             valid_APCs = False
             print("{0} are not included in {1}. ".format(point_set_copy, APC))
     if valid_APCs: 
-        print("All {0} APCs cover every point except the missed point exactly once. ".format(len(APCs)))
+        print("Each of the {0} given APCs is a disjoint set of triples containing every point except the missed point exactly once. ".format(len(APCs)))
 
 def has_APCs_checker(triples, APCs): 
     """Takes a list of triples and a dict of APCs and checks that each 
@@ -113,7 +113,7 @@ def has_APCs_checker(triples, APCs):
                 print("{0} is in the APC missing {1} but is not a triple in the PSTS. ".format(T, missed_pt))
                 valid_APCs = False
     if valid_APCs == True: 
-        print("All APCs are in the PSTS. ")
+        print("Each of the triples in the {0} given APCs are in the PSTS. ".format(len(APCs)))
 
 def extra_triples_checker(triples, extra_triples, point_set): 
     """Takes a list of triples and a list of extra_triples and checks that 
@@ -143,7 +143,7 @@ def extra_triples_checker(triples, extra_triples, point_set):
                     else: 
                         pairs.append(pair)
         if is_PSTS: 
-            print("The {0} extra triples can be added to obtain a PSTS({1}) with {2} triples. ".format(len(extra_triples), len(point_set), len(triples) + len(extra_triples)))
+            print("The {0} extra triples can be added to obtain a PSTS({1}) with any number of triples between {2} and {3} inclusively. ".format(len(extra_triples), len(point_set), len(triples), len(triples) + len(extra_triples)))
 
 def three_rotational_constructor(m): 
     """Takes an integer m >= 8 and constructs a factor-critical PSTS(3m+1) 
