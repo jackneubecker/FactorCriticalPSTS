@@ -4,7 +4,7 @@ import PSTS_16_34_37.checker
 import PSTS_16_37_37.checker
 import PSTS_19_36_57.checker
 import PSTS_22_35_70.checker
-import PSTS_22_63_73.checker
+import PSTS_22_64_73.checker
 import PSTS_25_040_052.checker
 import PSTS_25_050_100.checker
 import PSTS_28_045_120.checker
@@ -24,7 +24,7 @@ PSTS_16_34_37.checker.checker()
 PSTS_16_37_37.checker.checker()
 PSTS_19_36_57.checker.checker()
 PSTS_22_35_70.checker.checker()
-PSTS_22_63_73.checker.checker()
+PSTS_22_64_73.checker.checker()
 PSTS_25_040_052.checker.checker()
 PSTS_25_050_100.checker.checker()
 PSTS_28_045_120.checker.checker()
